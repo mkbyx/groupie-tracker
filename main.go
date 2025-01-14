@@ -24,7 +24,7 @@ type Respons struct {
 	ConcertDates string   `json:"concertdates"`
 	Relations    string   `json:"relations"`
 }
-
+//a modifier
 func mainPage(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./static/home.html")
 	if err != nil {
@@ -43,7 +43,7 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(body, &GroupList.Lists)
 	t.Execute(w, GroupList)
 }
-
+//a modifier
 func artistPage(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./static/artiste.html")
 	if err != nil {
@@ -97,5 +97,3 @@ func main() {
 	fmt.Println("Serveur démarré sur : http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
-
-//salut
