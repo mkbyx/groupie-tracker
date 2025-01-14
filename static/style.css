@@ -1,3 +1,4 @@
+/* Flexbox utilities */
 .flexCenter {
     display: flex;
     flex-wrap: wrap;
@@ -23,6 +24,7 @@
     background-color: rgb(6, 89, 233);
 }
 
+/* Utilisation de box-sizing pour tout gérer correctement */
 ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -30,19 +32,20 @@
 }
 
 body {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Améliorer la lisibilité */
 }
 
 header {
-	background-color: black;
-	display: flex;
+    background-color: black;
+    display: flex;
     flex-wrap: wrap;
     width: 100%;
     height: 100%;
     align-items: center;
-	justify-content: space-between;
-	padding: 10px 20px;
+    justify-content: center; /* Centrer les éléments dans le header */
+    padding: 10px 20px;
 }
 
 section {
@@ -51,7 +54,7 @@ section {
     align-items: center;
     width: 100%;
     height: 100%;
-    justify-content: space-between;
+    justify-content: center; /* Centrer la section entière */
     padding: 10px 20px;
 }
 
@@ -64,51 +67,50 @@ section {
     align-items: center;
 }
 
-.logo{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-.logo img {
-    margin-right: 7px;
-}
-
 .grille {  
     display: flex;
     flex-wrap: wrap;
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    align-items: center;
-    gap: 9px 9px;
-    grid-template-areas: 
-      ". . . ."
-      ". . . ."
-      ". . . ."
-      ". . . ."
-      ". . . .";
+    justify-content: center; /* Centrer les éléments de la grille */
+    gap: 20px;
+    padding: 20px;
 }
 
 .grid-item {
     width: 260px;
     height: 260px;
     align-items: center;
-    border-radius: 170px;
     justify-content: center;
     background: rgba(103, 93, 93, 0.645);
     text-align: center;
+    border-radius: 50%; /* Cercle pour les images */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrer le texte à l'intérieur du cercle */
+    color: white; /* Assurer que le texte est blanc pour un bon contraste */
+    padding: 10px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
 }
 
 .grid-item img {
-    align-items: center;
-    cursor: pointer;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Garder les images en cercle */
+    margin-bottom: 10px; /* Ajouter un espacement entre l'image et le nom */
+    transition: transform 0.3s ease;
 }
 
-.borderSearch {
-    width: 500px;
-    border-radius: 10px;
-    border: 0.5px solid white;
+/* Effet sur la grille au survol */
+.grid-item:hover {
+    transform: scale(1.1); /* Agrandir légèrement l'élément au survol */
+    background: rgba(103, 93, 93, 0.8); /* Changer légèrement le fond au survol */
 }
 
+.grid-item:hover img {
+    transform: scale(1.1); /* Agrandir l'image au survol */
+}
+
+/* Style pour la barre de recherche */
 .recherche {
     display: flex;
     flex-wrap: wrap;
@@ -126,7 +128,30 @@ section {
 .paddingSearch {
     padding-left: 20px;
 }
+/* Style pour la barre de recherche */
+.recherche {
+    display: flex;
+    flex-wrap: wrap;
+    height: 50px;
+    width: 230px;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px 0 0 10px; /* Arrondir uniquement les coins gauche de la barre */
+    padding-left: 20px;
+}
 
+/* Pour aligner la taille de l'input avec le bouton */
+.inputSearch {
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-radius: 10px 0 0 10px; /* Arrondir les coins gauche */
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+/* Réinitialisation des bordures et padding pour le bouton */
 .buttonSearch {
     display: flex;
     flex-wrap: wrap;
@@ -135,7 +160,18 @@ section {
     color: white;
     cursor: pointer;
     border-radius: 0 10px 10px 0;
+    justify-content: center; /* Centrer le texte à l'intérieur du bouton */
+    align-items: center;
+    background-color: #06A9E9; /* Couleur du fond pour le bouton */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
+
+/* Changer la couleur du bouton au survol */
+.buttonSearch:hover {
+    background-color: #004E7C;
+}
+
 
 #myButton {
     background-color: #4CAF50;

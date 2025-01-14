@@ -10,10 +10,10 @@ import (
 )
 
 type List struct {
-	Lists []Respons
+	Lists []Artiste
 }
 
-type Respons struct {
+type Artiste struct {
 	Id           int      `json:"id"`
 	Name         string   `json:"name"`
 	Image        string   `json:"image"`
@@ -65,7 +65,7 @@ func artistPage(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "ID de l'artiste non spécifié", http.StatusBadRequest)
 		return
 	}
-	var selectedArtist *Respons
+	var selectedArtist *Artiste
 	for _, artist := range GroupList.Lists {
 		if fmt.Sprintf("%d", artist.Id) == artistID {
 			selectedArtist = &artist
