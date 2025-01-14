@@ -49,8 +49,6 @@ func artistPage(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	// Récupérer les données de l'API
 	res, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
 	if err != nil {
 		log.Fatal(err)
@@ -60,18 +58,13 @@ func artistPage(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	var GroupList List
 	json.Unmarshal(body, &GroupList.Lists)
-
-	// Obtenir l'id de l'artiste depuis la query string
 	artistID := r.URL.Query().Get("id")
 	if artistID == "" {
 		http.Error(w, "ID de l'artiste non spécifié", http.StatusBadRequest)
 		return
 	}
-
-	// Trouver l'artiste correspondant
 	var selectedArtist *Respons
 	for _, artist := range GroupList.Lists {
 		if fmt.Sprintf("%d", artist.Id) == artistID {
@@ -79,13 +72,10 @@ func artistPage(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 	}
-
 	if selectedArtist == nil {
 		http.Error(w, "Artiste non trouvé", http.StatusNotFound)
 		return
 	}
-
-	// Passer un seul artiste au template
 	t.Execute(w, selectedArtist)
 }
 
