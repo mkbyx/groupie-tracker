@@ -1,0 +1,153 @@
+.flexCenter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexAround {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flexbetween {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.backBlue {
+    background-color: rgb(6, 89, 233);
+}
+
+::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: black;
+	display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+	justify-content: space-between;
+	padding: 10px 20px;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.banner {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.logo img {
+    margin-right: 7px;
+}
+
+.grille {  
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 9px 9px;
+    grid-template-areas: 
+      ". . . ."
+      ". . . ."
+      ". . . ."
+      ". . . ."
+      ". . . .";
+}
+
+.grid-item {
+    width: 260px;
+    height: 260px;
+    align-items: center;
+    border-radius: 170px;
+    justify-content: center;
+    background: rgba(103, 93, 93, 0.645);
+    text-align: center;
+}
+
+.grid-item img {
+    align-items: center;
+    cursor: pointer;
+}
+
+.borderSearch {
+    width: 500px;
+    border-radius: 10px;
+    border: 0.5px solid white;
+}
+
+.recherche {
+    display: flex;
+    flex-wrap: wrap;
+    height: 50px;
+    width: 230px;
+    font-size: 18px;
+    color: white;   
+    font-weight: bold;
+}
+
+.bordernone {
+    border: none;
+}
+
+.paddingSearch {
+    padding-left: 20px;
+}
+
+.buttonSearch {
+    display: flex;
+    flex-wrap: wrap;
+    height: 50px;
+    width: 120px;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 10px 10px 0;
+}
+
+#myButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+h1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
