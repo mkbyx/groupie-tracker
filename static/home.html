@@ -32,12 +32,12 @@
   <body>
     <div class="grille">
       {{ range .Lists }}
-        <div class="grid-item" data-title="{{ .Name }}">
-          <a href="/artiste?id={{ .Id }}">
+      <div class="grid-item" data-title="{{ .Name }}" data-creationdate="{{ .CreationDate }}">
+        <a href="/artiste?id={{ .Id }}">
             <img src="{{ .Image }}" alt="{{ .Name }}" style="width: 150px; height: 150px; border-radius: 50%; margin-top: 5px;">
-          </a>
-          <h2>{{ .Name }}</h2>
-        </div>
+        </a>
+        <h2>{{ .Name }}</h2>
+    </div>
       {{ end }}
     </div>    
   </body>
