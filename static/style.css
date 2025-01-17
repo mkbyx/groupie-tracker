@@ -120,6 +120,7 @@ section {
     box-sizing: border-box; /* Assure une gestion correcte des bordures et padding */
 }
 
+
 /* Réinitialisation des bordures et padding pour le bouton */
 .buttonSearch {
     display: flex;
