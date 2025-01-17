@@ -50,3 +50,63 @@ header {
 	margin-top: 10px;
 	line-height: 1.5;
 }
+
+/* Conteneur principal */
+.artist-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+}
+
+/* Titre principal */
+.title h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Image de l'artiste */
+.artist-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.artist-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Informations principales */
+.artist-details h2 {
+    text-align: center;
+    color: #555;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+.artist-details p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+    color: #444;
+}
+
+/* Bouton de retour */
+.btn-retour {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    margin: 20px auto;
+}
+.btn-retour:hover {
+    background-color: #0056b3;
+}
