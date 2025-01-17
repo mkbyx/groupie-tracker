@@ -112,7 +112,7 @@ section {
 /* Pour aligner la taille de l'input avec le bouton */
 .inputSearch {
     height: 50px; /* Même hauteur que le bouton */
-    width: 230px; /* Ajuste la largeur pour correspondre à tes besoins */
+    width: 300px; /* Ajuste la largeur pour correspondre à tes besoins */
     border: none;
     border-radius: 10px 0 0 10px; /* Garde les coins arrondis pour s'aligner */
     padding-left: 20px;
