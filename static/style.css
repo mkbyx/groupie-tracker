@@ -84,7 +84,7 @@ header {
 .paddingSearch {
     padding-left: 40px;
 }
-/* Style pour la barre de recherche */
+
 .recherche {
     display: flex;
     flex-wrap: wrap;
@@ -93,21 +93,19 @@ header {
     font-size: 18px;
     color: white;
     font-weight: bold;
-    border-radius: 10px 0 0 10px; /* Arrondir uniquement les coins gauche de la barre */
+    border-radius: 10px 0 0 10px;
     padding-left: 20px;
 }
 
-/* Pour aligner la taille de l'input avec le bouton */
 .inputSearch {
     height: 100%;
     width: 100%;
     border: none;
-    border-radius: 10px 0 0 10px; /* Arrondir les coins gauche */
+    border-radius: 10px 0 0 10px;
     padding-left: 20px;
     font-size: 18px;
 }
 
-/* Réinitialisation des bordures et padding pour le bouton */
 .buttonSearch {
     display: flex;
     flex-wrap: wrap;
@@ -116,18 +114,16 @@ header {
     color: white;
     cursor: pointer;
     border-radius: 0 10px 10px 0;
-    justify-content: center; /* Centrer le texte à l'intérieur du bouton */
+    justify-content: center;
     align-items: center;
-    background-color: #06A9E9; /* Couleur du fond pour le bouton */
+    background-color: #06A9E9;
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
-/* Changer la couleur du bouton au survol */
 .buttonSearch:hover {
     background-color: #2f7daa;
 }
-
 
 #myButton {
     background-color: #4CAF50;
