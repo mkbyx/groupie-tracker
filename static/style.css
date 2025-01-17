@@ -2,7 +2,6 @@
     background-color: rgb(6, 89, 233);
 }
 
-/* Utilisation de box-sizing pour tout gérer correctement */
 ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -12,7 +11,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif; /* Améliorer la lisibilité */
+    font-family: Arial, sans-serif; 
 }
 
 header {
@@ -22,17 +21,7 @@ header {
     width: 100%;
     height: 100%;
     align-items: center;
-    justify-content: center; /* Centrer les éléments dans le header */
-    padding: 10px 20px;
-}
-
-section {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    justify-content: center; /* Centrer la section entière */
+    justify-content: center;
     padding: 10px 20px;
 }
 
@@ -94,13 +83,13 @@ section {
 }
 
 .paddingSearch {
-    padding-left: 40px;
+    padding-left: 20px;
 }
 /* Style pour la barre de recherche */
 .recherche {
     display: flex;
     flex-wrap: wrap;
-    height: 30px;
+    height: 50px;
     width: 230px;
     font-size: 18px;
     color: white;
@@ -111,8 +100,8 @@ section {
 
 /* Pour aligner la taille de l'input avec le bouton */
 .inputSearch {
-    height: 100%;
-    width: 100%;
+    height: 50px;
+    width: 230px;
     border: none;
     border-radius: 10px 0 0 10px; /* Arrondir les coins gauche */
     padding-left: 20px;
@@ -130,14 +119,14 @@ section {
     border-radius: 0 10px 10px 0;
     justify-content: center; /* Centrer le texte à l'intérieur du bouton */
     align-items: center;
-    background-color: white; /* Couleur du fond pour le bouton */
+    background-color: #2f7daa /* Couleur du fond pour le bouton */
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
 /* Changer la couleur du bouton au survol */
 .buttonSearch:hover {
-    background-color: #004E7C;
+    background-color: #2f7daa;
 }
 
 
