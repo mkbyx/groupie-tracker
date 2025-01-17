@@ -3,6 +3,7 @@
 }
 
 /* Utilisation de box-sizing pour tout gérer correctement */
+/* Utilisation de box-sizing pour tout gérer correctement */
 ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -13,15 +14,22 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif; /* Améliorer la lisibilité */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Améliorer la lisibilité */
 }
 
 header {
+    background-color: black;
+    display: flex;
     background-color: black;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     height: 100%;
     align-items: center;
+    justify-content: center; /* Centrer les éléments dans le header */
+    padding: 10px 20px;
     justify-content: center; /* Centrer les éléments dans le header */
     padding: 10px 20px;
 }
@@ -32,6 +40,7 @@ section {
     align-items: center;
     width: 100%;
     height: 100%;
+    justify-content: center; /* Centrer la section entière */
     justify-content: center; /* Centrer la section entière */
     padding: 10px 20px;
 }
@@ -48,6 +57,9 @@ section {
 .grille {  
     display: flex;
     flex-wrap: wrap;
+    justify-content: center; /* Centrer les éléments de la grille */
+    gap: 20px;
+    padding: 20px;
     justify-content: center; /* Centrer les éléments de la grille */
     gap: 20px;
     padding: 20px;
@@ -68,9 +80,22 @@ section {
     padding: 10px;
     font-weight: bold;
     transition: transform 0.3s ease;
+    border-radius: 50%; /* Cercle pour les images */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrer le texte à l'intérieur du cercle */
+    color: white; /* Assurer que le texte est blanc pour un bon contraste */
+    padding: 10px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
 }
 
 .grid-item img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Garder les images en cercle */
+    margin-bottom: 10px; /* Ajouter un espacement entre l'image et le nom */
+    transition: transform 0.3s ease;
     width: 150px;
     height: 150px;
     border-radius: 50%; /* Garder les images en cercle */
@@ -97,6 +122,25 @@ section {
     padding-left: 20px;
 }
 /* Style pour la barre de recherche */
+/* Effet sur la grille au survol */
+.grid-item:hover {
+    transform: scale(1.1); /* Agrandir légèrement l'élément au survol */
+    background: rgba(103, 93, 93, 0.8); /* Changer légèrement le fond au survol */
+}
+
+.grid-item:hover img {
+    transform: scale(1.1); /* Agrandir l'image au survol */
+}
+
+
+.bordernone {
+    border: none;
+}
+
+.paddingSearch {
+    padding-left: 20px;
+}
+/* Style pour la barre de recherche */
 .recherche {
     display: flex;
     flex-wrap: wrap;
@@ -104,7 +148,10 @@ section {
     width: 230px;
     font-size: 18px;
     color: white;
+    color: white;
     font-weight: bold;
+    border-radius: 10px 0 0 10px; /* Arrondir uniquement les coins gauche de la barre */
+    padding-left: 20px;
     border-radius: 10px 0 0 10px; /* Arrondir uniquement les coins gauche de la barre */
     padding-left: 20px;
 }
@@ -113,12 +160,19 @@ section {
 .inputSearch {
     height: 100%;
     width: 100%;
+/* Pour aligner la taille de l'input avec le bouton */
+.inputSearch {
+    height: 100%;
+    width: 100%;
     border: none;
+    border-radius: 10px 0 0 10px; /* Arrondir les coins gauche */
     border-radius: 10px 0 0 10px; /* Arrondir les coins gauche */
     padding-left: 20px;
     font-size: 18px;
+    font-size: 18px;
 }
 
+/* Réinitialisation des bordures et padding pour le bouton */
 /* Réinitialisation des bordures et padding pour le bouton */
 .buttonSearch {
     display: flex;
@@ -128,6 +182,18 @@ section {
     color: white;
     cursor: pointer;
     border-radius: 0 10px 10px 0;
+    justify-content: center; /* Centrer le texte à l'intérieur du bouton */
+    align-items: center;
+    background-color: #06A9E9; /* Couleur du fond pour le bouton */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Changer la couleur du bouton au survol */
+.buttonSearch:hover {
+    background-color: #004E7C;
+}
+
     justify-content: center; /* Centrer le texte à l'intérieur du bouton */
     align-items: center;
     background-color: #06A9E9; /* Couleur du fond pour le bouton */
@@ -155,3 +221,4 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
 }
+
