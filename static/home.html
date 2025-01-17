@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Page d'accueil</title>
+    <link rel="stylesheet" href="/styles/style.css">
+  </head>
+  <header>
+    <div class="banner">
+      <div class="search" id="search">
+        <input type="text" id="app-search" class="inputSearch" placeholder="Que souhaitez-vous écouter ?">
+      </div>
+      <div class="backBlue buttonSearch">Rechercher</div>
+    </div>
+  </header>
+  <script>
+    var searchBar = document.getElementById("app-search");
+    searchBar.addEventListener("input", function () {
+      var searchValue = this.value.toLowerCase();
+      console.log(searchValue)
+      var maps = document.getElementsByClassName("grid-item");
+      for (var i = 0; i < maps.length; i++) {
+        var map = maps[i];
+        if (map.dataset.title.toLowerCase().indexOf(searchValue) !== -1) {
+          map.style.display = "block";
+        } else {
+          map.style.display = "none";
+        }
+      }
+    });
+  </script>
+  <body>
+    <div class="grille">
+      {{ range .Lists }}
+        <div class="grid-item" data-title="{{ .Name }}">
+          <a href="/artiste?id={{ .Id }}">
+            <img src="{{ .Image }}" alt="{{ .Name }}" style="width: 150px; height: 150px; border-radius: 50%; margin-top: 5px;">
+          </a>
+          <h2>{{ .Name }}</h2>
+        </div>
+      {{ end }}
+    </div>    
+  </body>
+</html>

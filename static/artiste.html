@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Artiste</title>
+    <link rel="stylesheet" href="artiste.css">
+</head>
+<body>
+    <header>
+        <div class="title">
+            <h1>Artiste : {{ .Name }}</h1>
+        </div>
+    </header>
+    <main>
+        <div class="artist">
+            <h2>{{ .Name }}</h2>
+            <p>Dates des prochains concerts : {{ .ConcertDates }}</p>
+            <p>Date du premier album : {{ .FirstAlbum }}</p>
+            <p>Nom des membres : {{ range .Members }}<span>{{ . }}</span> {{ end }}</p>
+        </div>
+		<div class="back-button" style="margin-top: 20px;">
+            <a href="/" style="text-decoration: none; color: white; background-color: #007BFF; padding: 10px 20px; border-radius: 5px;">Retour</a>
+        </div>
+    </main>
+</body>
+</html>

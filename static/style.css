@@ -1,0 +1,158 @@
+.backBlue {
+    background-color: rgb(6, 89, 233);
+}
+
+/* Utilisation de box-sizing pour tout gérer correctement */
+::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Améliorer la lisibilité */
+}
+
+header {
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center; /* Centrer les éléments dans le header */
+    padding: 10px 20px;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: center; /* Centrer la section entière */
+    padding: 10px 20px;
+}
+
+.banner {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+}
+
+.grille {  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centrer les éléments de la grille */
+    gap: 20px;
+    padding: 20px;
+}
+
+.grid-item {
+    width: 260px;
+    height: 260px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(103, 93, 93, 0.645);
+    text-align: center;
+    border-radius: 50%; /* Cercle pour les images */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrer le texte à l'intérieur du cercle */
+    color: white; /* Assurer que le texte est blanc pour un bon contraste */
+    padding: 10px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.grid-item img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Garder les images en cercle */
+    margin-bottom: 10px; /* Ajouter un espacement entre l'image et le nom */
+    transition: transform 0.3s ease;
+}
+
+/* Effet sur la grille au survol */
+.grid-item:hover {
+    transform: scale(1.1); /* Agrandir légèrement l'élément au survol */
+    background: rgba(103, 93, 93, 0.8); /* Changer légèrement le fond au survol */
+}
+
+.grid-item:hover img {
+    transform: scale(1.1); /* Agrandir l'image au survol */
+}
+
+
+.bordernone {
+    border: none;
+}
+
+.paddingSearch {
+    padding-left: 20px;
+}
+/* Style pour la barre de recherche */
+.recherche {
+    display: flex;
+    flex-wrap: wrap;
+    height: 50px;
+    width: 230px;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px 0 0 10px; /* Arrondir uniquement les coins gauche de la barre */
+    padding-left: 20px;
+}
+
+/* Pour aligner la taille de l'input avec le bouton */
+.inputSearch {
+    height: 50px; /* Même hauteur que le bouton */
+    width: 230px; /* Ajuste la largeur pour correspondre à tes besoins */
+    border: none;
+    border-radius: 10px 0 0 10px; /* Garde les coins arrondis pour s'aligner */
+    padding-left: 20px;
+    font-size: 18px;
+    box-sizing: border-box; /* Assure une gestion correcte des bordures et padding */
+}
+
+/* Réinitialisation des bordures et padding pour le bouton */
+.buttonSearch {
+    display: flex;
+    flex-wrap: wrap;
+    height: 50px;
+    width: 120px;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 10px 10px 0;
+    justify-content: center; /* Centrer le texte à l'intérieur du bouton */
+    align-items: center;
+    background-color: #06A9E9; /* Couleur du fond pour le bouton */
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/* Changer la couleur du bouton au survol */
+.buttonSearch:hover {
+    background-color: #004E7C;
+}
+
+
+#myButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+h1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

@@ -1,0 +1,52 @@
+body {
+	background-color: rgba(103, 93, 93, 0.645);
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: white;
+	display: flex;
+	align-items: center;
+	height: 80px;
+	padding: 0 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.logo img {
+    margin-right: 7px;
+}
+
+.title {
+	flex: 2;
+	text-align: center;
+}
+
+.artist {
+	background-color: white;
+	padding: 20px;
+	margin: 20px auto;
+	max-width: 600px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.artist img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+.artist h2 {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.artist p {
+	margin-top: 10px;
+	line-height: 1.5;
+}

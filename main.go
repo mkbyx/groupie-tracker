@@ -1,37 +1,89 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
 	"html/template"
+	"io"
+	"log"
 	"net/http"
 )
 
-type Todo struct {
-	Title string
-	Done bool
+type List struct {
+	Lists []Artiste
 }
 
-type TodoPageData struct {
-	PageTitle string
-	Todos []Todo
+type Artiste struct {
+	Id           int      `json:"id"`
+	Name         string   `json:"name"`
+	Image        string   `json:"image"`
+	Locations    string   `json:"locations"`
+	Members      []string `json:"members"`
+	CreationDate int      `json:"creationdate"`
+	FirstAlbum   string   `json:"firstalbum"`
+	ConcertDates string   `json:"concertdates"`
+	Relations    string   `json:"relations"`
 }
 
-func indexHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("static/index.html"))
-
-	data := TodoPageData{
-		PageTitle: "My TODO list",
-		Todos: []Todo{
-			{Title: "Task 1", Done: false},
-			{Title: "Task 2", Done: true},
-			{Title: "Task 3", Done: true},
-		},
+func mainPage(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("./static/home.html")
+	if err != nil {
+		log.Fatal(err)
 	}
-	tmpl.Execute(w, data)
+	res, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	body, err := io.ReadAll(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	var GroupList List
+	json.Unmarshal(body, &GroupList.Lists)
+	t.Execute(w, GroupList)
 }
 
-func main () {
-	http.HandleFunc("/", indexHandler)
+func artistPage(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("./static/artiste.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+	res, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	body, err := io.ReadAll(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	var GroupList List
+	json.Unmarshal(body, &GroupList.Lists)
+	artistID := r.URL.Query().Get("id")
+	if artistID == "" {
+		http.Error(w, "ID de l'artiste non spécifié", http.StatusBadRequest)
+		return
+	}
+	var selectedArtist *Artiste
+	for _, artist := range GroupList.Lists {
+		if fmt.Sprintf("%d", artist.Id) == artistID {
+			selectedArtist = &artist
+			break
+		}
+	}
+	if selectedArtist == nil {
+		http.Error(w, "Artiste non trouvé", http.StatusNotFound)
+		return
+	}
+	t.Execute(w, selectedArtist)
+}
+
+func main() {
+	staticFiles := http.FileServer(http.Dir("./static"))
+	http.Handle("/styles/", http.StripPrefix("/styles/", staticFiles))
+	http.HandleFunc("/", mainPage)
+	http.HandleFunc("/artiste", artistPage)
+	fmt.Println("Serveur démarré sur : http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
-
-// git add . git commit -m "msg" git push
