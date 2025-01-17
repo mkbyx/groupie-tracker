@@ -130,7 +130,7 @@ section {
     border-radius: 0 10px 10px 0;
     justify-content: center; /* Centrer le texte à l'intérieur du bouton */
     align-items: center;
-    background-color: white /* Couleur du fond pour le bouton */
+    background-color: white; /* Couleur du fond pour le bouton */
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
