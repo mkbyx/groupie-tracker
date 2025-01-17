@@ -2,7 +2,6 @@
     background-color: rgb(6, 89, 233);
 }
 
-/* Utilisation de box-sizing pour tout gérer correctement */
 ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -12,7 +11,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif; /* Améliorer la lisibilité */
+    font-family: Arial, sans-serif;
 }
 
 header {
@@ -22,17 +21,7 @@ header {
     width: 100%;
     height: 100%;
     align-items: center;
-    justify-content: center; /* Centrer les éléments dans le header */
-    padding: 10px 20px;
-}
-
-section {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    justify-content: center; /* Centrer la section entière */
+    justify-content: center;
     padding: 10px 20px;
 }
 
@@ -48,7 +37,7 @@ section {
 .grille {  
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Centrer les éléments de la grille */
+    justify-content: center;
     gap: 20px;
     padding: 20px;
 }
@@ -60,11 +49,11 @@ section {
     justify-content: center;
     background: rgba(103, 93, 93, 0.645);
     text-align: center;
-    border-radius: 50%; /* Cercle pour les images */
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centrer le texte à l'intérieur du cercle */
-    color: white; /* Assurer que le texte est blanc pour un bon contraste */
+    justify-content: center;
+    color: white;
     padding: 10px;
     font-weight: bold;
     transition: transform 0.3s ease;
@@ -73,19 +62,18 @@ section {
 .grid-item img {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Garder les images en cercle */
-    margin-bottom: 10px; /* Ajouter un espacement entre l'image et le nom */
+    border-radius: 50%;
+    margin-bottom: 10px;
     transition: transform 0.3s ease;
 }
 
-/* Effet sur la grille au survol */
 .grid-item:hover {
-    transform: scale(1.1); /* Agrandir légèrement l'élément au survol */
-    background: rgba(103, 93, 93, 0.8); /* Changer légèrement le fond au survol */
+    transform: scale(1.1);
+    background: rgba(103, 93, 93, 0.8);
 }
 
 .grid-item:hover img {
-    transform: scale(1.1); /* Agrandir l'image au survol */
+    transform: scale(1.1);
 }
 
 
@@ -94,13 +82,13 @@ section {
 }
 
 .paddingSearch {
-    padding-left: 20px;
+    padding-left: 40px;
 }
 /* Style pour la barre de recherche */
 .recherche {
     display: flex;
     flex-wrap: wrap;
-    height: 50px;
+    height: 40px;
     width: 230px;
     font-size: 18px;
     color: white;
@@ -123,7 +111,7 @@ section {
 .buttonSearch {
     display: flex;
     flex-wrap: wrap;
-    height: 50px;
+    height: 40px;
     width: 120px;
     color: white;
     cursor: pointer;
@@ -137,7 +125,7 @@ section {
 
 /* Changer la couleur du bouton au survol */
 .buttonSearch:hover {
-    background-color: #004E7C;
+    background-color: #2f7daa;
 }
 
 
