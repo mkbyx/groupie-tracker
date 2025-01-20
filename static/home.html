@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
   <title>Groupie Tracker</title>
   <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <!-- EN-TÊTE -->
-  <header class="header">
+  <header>
     <div class="banner">
       <h1>Mon Groupie Tracker</h1>
-      <form action="/" method="GET" id="search-form" class="search-form">
-        <input type="text" name="query" class="input-search" placeholder="Rechercher un artiste...">
-        <button type="submit" class="button-search">Rechercher</button>
-      </form>
     </div>
   </header>
 
-  <!-- CONTENU PRINCIPAL -->
   <div class="main-container">
-    <!-- BARRE LATÉRALE (SIDEBAR) -->
+    <!-- SIDEBAR À GAUCHE -->
     <aside class="sidebar">
       <h2>Filtrer les artistes</h2>
+
+      <!-- Filtrer par nom -->
       <label for="filter-name">Nom</label>
       <input type="text" id="filter-name" class="sidebar-input" placeholder="Rechercher..." />
 
+      <!-- Filtrer par année -->
       <label for="filter-year">Après année</label>
-      <select id="filter-year" class="sidebar-select">
+      <select id="filter-year">
         <option value="">Toutes les années</option>
         <option value="1970">1970</option>
         <option value="1980">1980</option>
@@ -35,34 +31,38 @@
         <option value="2000">2000</option>
         <option value="2010">2010</option>
       </select>
-
+      
+      <!-- Filtrer par membres -->
       <label for="filter-members">Nombre de membres</label>
-      <select id="filter-members" class="sidebar-select">
+      <select id="filter-members">
         <option value="">Tous</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3 et plus</option>
       </select>
 
-      <button id="apply-filters" class="sidebar-button">Appliquer les filtres</button>
+      <!-- Bouton appliquer filtre -->
+      <button id="sidebar-search-btn" class="sidebar-button">Rechercher</button>
     </aside>
 
-    <!-- SECTION DE GRILLE -->
-    <main class="content">
+    <!-- SECTION PRINCIPALE -->
+    <div class="content">
       <div class="grille">
         {{ range .Lists }}
-        <div class="grid-item" data-title="{{ .Name }}" data-creationdate="{{ .CreationDate }}" data-members="{{ len .Members }}">
-          <a href="/artiste?id={{ .Id }}">
-            <img src="{{ .Image }}" alt="{{ .Name }}">
-          </a>
-          <h2>{{ .Name }}</h2>
-        </div>
+          <div class="grid-item"
+               data-title="{{ .Name }}"
+               data-creationdate="{{ .CreationDate }}"
+               data-members="{{ len .Members }}">
+            <a href="/artiste?id={{ .Id }}">
+              <img src="{{ .Image }}" alt="{{ .Name }}">
+            </a>
+            <h2>{{ .Name }}</h2>
+          </div>
         {{ end }}
       </div>
-      <div id="no-results" class="no-results" style="display: none;">
-        Aucun artiste ne correspond à vos critères de recherche.
-      </div>
-    </main>
+    </div>
   </div>
+
+  <script src="scripts/filter.js"></script>
 </body>
 </html>

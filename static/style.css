@@ -1,82 +1,65 @@
-/* Style global */
+/* Style général */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f8f8f8;
 }
 
 /* Header */
-.header {
+.banner {
   background-color: #007BFF;
   color: white;
-  padding: 20px;
   text-align: center;
-}
-
-.search-form {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.input-search {
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-}
-
-.button-search {
-  padding: 10px 15px;
-  background-color: white;
-  color: #007BFF;
-  font-weight: bold;
-  border: none;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
+  padding: 20px;
 }
 
 /* Conteneur principal */
 .main-container {
   display: flex;
-  padding: 20px;
-  gap: 20px;
 }
 
 /* Sidebar */
 .sidebar {
-  width: 300px;
-  padding: 20px;
+  width: 250px;
   background-color: #333;
-  color: white;
-  border-radius: 5px;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .sidebar h2 {
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+.sidebar label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .sidebar-input,
-.sidebar-select {
+#filter-year,
+#filter-members {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
+  padding: 8px;
+  margin-bottom: 10px;
   border: none;
   border-radius: 5px;
   font-size: 16px;
+  color: #333;
 }
 
 .sidebar-button {
-  width: 100%;
-  padding: 10px;
   background-color: #06A9E9;
   color: white;
   border: none;
   border-radius: 5px;
+  padding: 10px;
   cursor: pointer;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
@@ -84,49 +67,47 @@ body {
   background-color: #004E7C;
 }
 
-/* Grille d'artistes */
+/* Grille d'éléments */
 .content {
-  flex-grow: 1;
-  background-color: white;
+  flex: 1;
   padding: 20px;
-  border-radius: 5px;
+  background-color: #f4f4f4;
 }
 
 .grille {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 
 .grid-item {
-  background-color: #f4f4f4;
-  text-align: center;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  background-color: rgba(103, 93, 93, 0.645);
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .grid-item img {
-  width: 150px;
-  height: 150px;
+  max-width: 120px;
+  max-height: 120px;
   border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.grid-item h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 .grid-item:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.grid-item h2 {
-  margin-top: 10px;
-  font-size: 1.1rem;
-}
-
-/* Message "Aucun résultat" */
-.no-results {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #888;
-  margin-top: 20px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
