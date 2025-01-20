@@ -13,15 +13,19 @@
         </div>
     </header>
     <main>
+        <div id="arriereplan">
+        </div>
         <div class="artist">
             <h2>{{ .Name }}</h2>
             <p>Dates de création du groupe : {{ .CreationDate }}</p>
             <p>Date du premier album : {{ .FirstAlbum }}</p>
             <p>Nom des membres : {{ range .Members }}<span>{{ . }}</span> {{ end }}</p>
-            <p>affichage des dates et lieux des concerts : {{ range .Relations}}<span>{{ . }}</span> {{ end }}</p>
         </div>
 		<div class="back-button" style="margin-top: 20px;">
             <a href="/" style="text-decoration: none; color: white; background-color: #007BFF; padding: 10px 20px; border-radius: 5px;">Retour</a>
+        </div>
+        <div class="artist">
+            <p>affichage des dates et lieux des concerts : {{ range .DatesLocations}}<span>{{ . }}</span> {{ end }}</p>
         </div>
     </main>
 </body>
