@@ -17,7 +17,7 @@ type Artiste struct {
 	Id           int      `json:"id"`
 	Name         string   `json:"name"`
 	Image        string   `json:"image"`
-	Locations    string   `json:"locations"`
+	Locations    string   `json:"locations"`    
 	Members      []string `json:"members"`
 	CreationDate int      `json:"creationdate"`
 	FirstAlbum   string   `json:"firstalbum"`
@@ -43,6 +43,7 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(body, &GroupList.Lists)
 	t.Execute(w, GroupList)
 }
+
 
 func artistPage(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./static/artiste.html")

@@ -23,7 +23,7 @@
 
       <!-- Filtrer par année (CreationDate) -->
       <label for="filter-year">Après année</label>
-      <select id="filter-year">
+      <select id="filter-year" class="sidebar-input">
         <option value="">Toutes les années</option>
         <option value="1970">1970</option>
         <option value="1980">1980</option>
@@ -32,17 +32,14 @@
         <option value="2010">2010</option>
       </select>
       
-      <!-- Filtrer par nombre de membres (exemple) -->
+      <!-- Filtrer par nombre de membres -->
       <label for="filter-members">Nombre de membres</label>
-      <select id="filter-members">
+      <select id="filter-members" class="sidebar-input">
         <option value="">Tous</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3 et plus</option>
       </select>
-
-      <!-- Bouton pour appliquer le filtre -->
-      <button id="sidebar-search-btn" class="sidebar-button">Rechercher</button>
     </aside>
 
     <!-- CONTENU PRINCIPAL -->
@@ -52,8 +49,7 @@
           <div class="grid-item"
                data-title="{{ .Name }}"
                data-creationdate="{{ .CreationDate }}"
-               data-members="{{ len .Members }}"
-          >
+               data-members="{{ len .Members }}">
             <a href="/artiste?id={{ .Id }}">
               <img src="{{ .Image }}" alt="{{ .Name }}" style="width: 150px; height: 150px; border-radius: 50%; margin-top: 5px;">
             </a>
@@ -64,41 +60,39 @@
     </div>
   </div>
 
-  <!-- Script de filtrage -->
+  <!-- Script de recherche interactive -->
   <script>
-    document.getElementById('sidebar-search-btn').addEventListener('click', function() {
-      // On récupère les valeurs de chaque "filtre"
-      var nameValue   = document.getElementById('filter-name').value.toLowerCase();
-      var yearValue   = document.getElementById('filter-year').value;  // ex: "1980"
-      var membersValue = document.getElementById('filter-members').value; // ex: "3"
+    // Récupérer les filtres
+    const filterName = document.getElementById('filter-name');
+    const filterYear = document.getElementById('filter-year');
+    const filterMembers = document.getElementById('filter-members');
+    const items = document.getElementsByClassName('grid-item');
 
-      var items = document.getElementsByClassName('grid-item');
-      for (var i = 0; i < items.length; i++) {
-        var item = items[i];
+    // Fonction pour filtrer les résultats
+    function applyFilters() {
+      const nameValue = filterName.value.toLowerCase();
+      const yearValue = parseInt(filterYear.value, 10);
+      const membersValue = filterMembers.value;
 
-        // Lecture des data-attributes
-        var itemTitle        = item.dataset.title.toLowerCase();
-        var itemCreationDate = parseInt(item.dataset.creationdate, 10);
-        var itemMembers      = parseInt(item.dataset.members, 10);
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        const itemTitle = item.dataset.title.toLowerCase();
+        const itemCreationDate = parseInt(item.dataset.creationdate, 10);
+        const itemMembers = parseInt(item.dataset.members, 10);
 
-        // Par défaut, on suppose qu'on affiche l'item
-        var showItem = true;
+        let showItem = true;
 
-        // 1) Filtre par nom (si nameValue non vide)
+        // Filtrer par nom
         if (nameValue && !itemTitle.includes(nameValue)) {
           showItem = false;
         }
 
-        // 2) Filtre par année, si l'utilisateur choisit une année
-        //    Par exemple, on veut "tous les groupes créés APRES 1980"
-        if (yearValue) {
-          var yearFilterInt = parseInt(yearValue, 10);
-          if (itemCreationDate < yearFilterInt) {
-            showItem = false;
-          }
+        // Filtrer par année
+        if (!isNaN(yearValue) && (itemCreationDate < yearValue || itemCreationDate > yearValue+10)) {
+          showItem = false;
         }
 
-        // 3) Filtre par nombre de membres (juste un exemple)
+        // Filtrer par nombre de membres
         if (membersValue) {
           if (membersValue === "1" && itemMembers !== 1) {
             showItem = false;
@@ -106,16 +100,20 @@
           if (membersValue === "2" && itemMembers !== 2) {
             showItem = false;
           }
-          // "3" => 3 et plus
           if (membersValue === "3" && itemMembers < 3) {
             showItem = false;
           }
         }
 
-        // Affichage ou masquage
+        // Afficher ou masquer l'élément
         item.style.display = showItem ? "block" : "none";
       }
-    });
+    }
+
+    // Ajouter des écouteurs d'événements sur les filtres
+    filterName.addEventListener('input', applyFilters);
+    filterYear.addEventListener('change', applyFilters);
+    filterMembers.addEventListener('change', applyFilters);
   </script>
 </body>
 </html>
