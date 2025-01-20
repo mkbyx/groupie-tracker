@@ -25,7 +25,7 @@ type Artiste struct {
 	ConcertDates string   `json:"concertdates"`
 	Relations    string   `json:"relations"`
 }
-
+//a modifier
 func mainPage(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./static/home.html")
 	if err != nil {
