@@ -31,8 +31,6 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	// Récupérer la liste des artistes depuis l'API
 	res, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
 	if err != nil {
 		log.Fatal(err)
@@ -46,12 +44,10 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 	var GroupList List
 	json.Unmarshal(body, &GroupList.Lists)
 
-	// Récupérer la requête de recherche
 	searchQuery := r.URL.Query().Get("query")
 	if searchQuery != "" {
-		searchQuery = strings.ToLower(searchQuery) // Mettre en minuscules pour une recherche insensible à la casse
+		searchQuery = strings.ToLower(searchQuery)
 
-		// Filtrer les artistes
 		var filteredArtists []Artiste
 		for _, artist := range GroupList.Lists {
 			if strings.Contains(strings.ToLower(artist.Name), searchQuery) ||
@@ -62,14 +58,11 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 				filteredArtists = append(filteredArtists, artist)
 			}
 		}
-		GroupList.Lists = filteredArtists // Mettre à jour la liste des artistes
+		GroupList.Lists = filteredArtists
 	}
-
-	// Rendre le template avec la liste filtrée
 	t.Execute(w, GroupList)
 }
 
-// Fonction utilitaire pour vérifier si une chaîne est dans une liste
 func containsIgnoreCase(list []string, query string) bool {
 	for _, item := range list {
 		if strings.Contains(strings.ToLower(item), query) {
