@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Groupie Tracker</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
   <header>
@@ -17,44 +17,49 @@
     <aside class="sidebar">
       <h2>Filtrer les artistes</h2>
 
-      <!-- Filtrer par nom -->
-      <label for="filter-name">Nom</label>
-      <input type="text" id="filter-name" class="sidebar-input" placeholder="Rechercher..." />
+      <!-- Formulaire de filtrage -->
+      <form method="GET" action="/">
+        <!-- Filtrer par nom -->
+        <label for="filter-name">Nom</label>
+        <input 
+          type="text" 
+          id="filter-name" 
+          name="name" 
+          class="sidebar-input" 
+          placeholder="Rechercher un artiste..." />
 
-      <!-- Filtrer par année -->
-      <label for="filter-year">Après année</label>
-      <select id="filter-year">
-        <option value="">Toutes les années</option>
-        <option value="1970">1970</option>
-        <option value="1980">1980</option>
-        <option value="1990">1990</option>
-        <option value="2000">2000</option>
-        <option value="2010">2010</option>
-      </select>
-      
-      <!-- Filtrer par membres -->
-      <label for="filter-members">Nombre de membres</label>
-      <select id="filter-members">
-        <option value="">Tous</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3 et plus</option>
-      </select>
+        <!-- Filtrer par année -->
+        <label for="filter-year">Après année</label>
+        <select id="filter-year" name="year" class="sidebar-input">
+          <option value="">Toutes les années</option>
+          <option value="1970">1970</option>
+          <option value="1980">1980</option>
+          <option value="1990">1990</option>
+          <option value="2000">2000</option>
+          <option value="2010">2010</option>
+        </select>
+        
+        <!-- Filtrer par nombre de membres -->
+        <label for="filter-members">Nombre de membres</label>
+        <select id="filter-members" name="members" class="sidebar-input">
+          <option value="">Tous</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3 et plus</option>
+        </select>
 
-      <!-- Bouton appliquer filtre -->
-      <button id="sidebar-search-btn" class="sidebar-button">Rechercher</button>
+        <!-- Bouton pour appliquer le filtre -->
+        <button type="submit" class="sidebar-button">Rechercher</button>
+      </form>
     </aside>
 
-    <!-- SECTION PRINCIPALE -->
+    <!-- CONTENU PRINCIPAL -->
     <div class="content">
       <div class="grille">
         {{ range .Lists }}
-          <div class="grid-item"
-               data-title="{{ .Name }}"
-               data-creationdate="{{ .CreationDate }}"
-               data-members="{{ len .Members }}">
+          <div class="grid-item">
             <a href="/artiste?id={{ .Id }}">
-              <img src="{{ .Image }}" alt="{{ .Name }}">
+              <img src="{{ .Image }}" alt="{{ .Name }}" />
             </a>
             <h2>{{ .Name }}</h2>
           </div>
@@ -62,7 +67,5 @@
       </div>
     </div>
   </div>
-
-  <script src="scripts/filter.js"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
@@ -25,7 +26,7 @@ type Artiste struct {
 	ConcertDates string   `json:"concertdates"`
 	Relations    string   `json:"relations"`
 }
-//a modifier
+
 func mainPage(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./static/home.html")
 	if err != nil {
@@ -43,8 +44,12 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 
 	var GroupList List
 	json.Unmarshal(body, &GroupList.Lists)
+	queryYear := r.URL.Query().Get("year")
+	queryMembers := r.URL.Query().Get("members")
 
-	searchQuery := r.URL.Query().Get("query")
+	var filteredArtists []Artiste
+	for _, artist := range GroupList.Lists {
+		searchQuery := r.URL.Query().Get("query")
 	if searchQuery != "" {
 		searchQuery = strings.ToLower(searchQuery)
 
@@ -60,9 +65,35 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 		}
 		GroupList.Lists = filteredArtists
 	}
+
+		// Filtrer par année
+		if queryYear != "" {
+			year, err := strconv.Atoi(queryYear)
+			if err == nil && artist.CreationDate < year {
+				continue
+			}
+		}
+
+		// Filtrer par nombre de membres
+		if queryMembers != "" {
+			memberCount, err := strconv.Atoi(queryMembers)
+			if err == nil {
+				if memberCount == 3 && len(artist.Members) < 3 {
+					continue
+				} else if memberCount != 3 && len(artist.Members) != memberCount {
+					continue
+				}
+			}
+		}
+
+		// Si l'artiste passe tous les filtres, on l'ajoute à la liste filtrée
+		filteredArtists = append(filteredArtists, artist)
+	}
+
+	// Mise à jour de la liste affichée
+	GroupList.Lists = filteredArtists
 	t.Execute(w, GroupList)
 }
-
 func containsIgnoreCase(list []string, query string) bool {
 	for _, item := range list {
 		if strings.Contains(strings.ToLower(item), query) {
