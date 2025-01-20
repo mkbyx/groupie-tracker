@@ -43,7 +43,7 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(body, &GroupList.Lists)
 	t.Execute(w, GroupList)
 }
-//a modifier
+
 func artistPage(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./static/artiste.html")
 	if err != nil {
