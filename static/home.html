@@ -7,12 +7,12 @@
   </head>
   <header>
     <div class="banner">
-      <div class="search" id="search">
-        <input type="text" id="app-search" class="inputSearch" placeholder="Que souhaitez-vous écouter ?">
-      </div>
-      <div class="backBlue buttonSearch">Rechercher</div>
+        <form action="/" method="GET" id="search-form">
+            <input type="text" name="query" class="inputSearch" placeholder="Que souhaitez-vous écouter ?">
+            <button type="submit" class="backBlue buttonSearch">Rechercher</button>
+        </form>
     </div>
-  </header>
+</header>
   <script>
     var searchBar = document.getElementById("app-search");
     searchBar.addEventListener("input", function () {
