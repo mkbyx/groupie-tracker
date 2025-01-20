@@ -13,15 +13,26 @@
         </div>
     </header>
     <main>
-        <div class="artist">
-            <h2>{{ .Name }}</h2>
-            <p>Dates des prochains concerts : {{ .ConcertDates }}</p>
-            <p>Date du premier album : {{ .FirstAlbum }}</p>
-            <p>Nom des membres : {{ range .Members }}<span>{{ . }}</span> {{ end }}</p>
-        </div>
-		<div class="back-button" style="margin-top: 20px;">
-            <a href="/" style="text-decoration: none; color: white; background-color: #007BFF; padding: 10px 20px; border-radius: 5px;">Retour</a>
+        <div class="artist-container">
+            <!-- Image de l'artiste -->
+            <div class="artist-image">
+                <img src="{{ .Image }}" alt="{{ .Name }}">
+            </div>
+
+            <!-- Informations principales -->
+            <div class="artist-details">
+                <h2>{{ .Name }}</h2>
+                <p><strong>Dates des prochains concerts :</strong> {{ .ConcertDates }}</p>
+                <p><strong>Date du premier album :</strong> {{ .FirstAlbum }}</p>
+                <p><strong>Nom des membres :</strong> {{ range .Members }}<span>{{ . }}</span> {{ end }}</p>
+            </div>
+
+            <!-- Bouton de retour -->
+            <div class="back-button">
+                <a href="/" class="btn-retour">Retour</a>
+            </div>
         </div>
     </main>
 </body>
 </html>
+

@@ -1,153 +1,169 @@
-.flexCenter {
+.main-container {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .sidebar h2 {
+    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .sidebar label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .sidebar-input,
+  #filter-year,
+  #filter-members {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .sidebar-button {
+    background-color: #06A9E9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  .sidebar-button:hover {
+    background-color: #004E7C;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+  }
+  
+  .grille {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-}
+    gap: 20px;
+    padding: 20px;
+  }
+  .grid-item {
+    position: relative;           /* Utile si on veut ajouter un effet d’ombre “flottant” */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .grid-item:hover {
+    transform: scale(1.1) rotate(3deg);  
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
 
-.flexAround {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-}
+  .grid-item {
+    opacity: 0;           /* Caché par défaut */
+    animation: fadeIn 0.8s forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;         /* L’item devient visible */
+    }
+  }
 
-.flexbetween {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-}
+  .grid-item img {
+    transition: transform 0.3s ease;
+  }
+  
+  .grid-item:hover img {
+    transform: scale(1.2);
+  }
 
-.backBlue {
-    background-color: rgb(6, 89, 233);
-}
+  .grid-item {
+    background-color: rgba(103, 93, 93, 0.645);
+    transition: background-color 0.3s ease;
+  }
+  
+  .grid-item:hover {
+    background-color: #ff9800;  /* Couleur plus vive (orange) */
+  }
 
-::before, ::after {
-    box-sizing: border-box;
+  .grid-item:hover {
+    box-shadow: 0 0 10px 5px rgba(255, 195, 0, 0.5);
+    transform: scale(1.05);
+  }
+
+/* 1) Import d’une police Google (dans votre style.css, par exemple tout en haut) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+/* 2) Style global du body : applique la police par défaut */
+body {
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f8f8f8; /* Un fond gris clair, par exemple */
 }
 
-body {
-	margin: 0;
-	padding: 0;
-}
-
-header {
-	background-color: black;
-	display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-	justify-content: space-between;
-	padding: 10px 20px;
-}
-
-section {
+/* 3) On s’assure que la grille elle-même soit centrée */
+.grille {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    justify-content: space-between;
-    padding: 10px 20px;
+    justify-content: center;  /* centrer horizontalement */
+    gap: 20px;                /* espace entre les items */
+    padding: 20px;
 }
 
-.banner {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    height: 200px;
-    justify-content: center;
-    align-items: center;
-}
-
-.logo{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-.logo img {
-    margin-right: 7px;
-}
-
-.grille {  
-    display: flex;
-    flex-wrap: wrap;
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    align-items: center;
-    gap: 9px 9px;
-    grid-template-areas: 
-      ". . . ."
-      ". . . ."
-      ". . . ."
-      ". . . ."
-      ". . . .";
-}
-
+/* 4) .grid-item : centrer le contenu + style plus propre */
 .grid-item {
-    width: 260px;
-    height: 260px;
-    align-items: center;
-    border-radius: 170px;
-    justify-content: center;
-    background: rgba(103, 93, 93, 0.645);
-    text-align: center;
+    display: flex;
+    flex-direction: column;  /* Image puis texte en colonne */
+    align-items: center;     /* Centre horizontalement l’image et le texte */
+    justify-content: center; /* Centre verticalement si nécessaire */
+    width: 200px;            /* Largeur fixe, à ajuster selon tes goûts */
+    min-height: 260px;       /* Hauteur mini, pour garder un alignement */
+    
+    background-color: #aaa;  /* Couleur de fond gris moyen (exemple) */
+    color: #fff;             /* Texte blanc pour contraster */
+    border-radius: 10px;     /* Coins arrondis, plus doux que le cercle */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);  /* Légère ombre */
+    transition: transform 0.3s ease;
 }
 
+/* Au survol, effet de léger zoom */
+.grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
+/* 5) Image : centrée et adapté à la largeur */
 .grid-item img {
-    align-items: center;
-    cursor: pointer;
+    display: block;
+    max-width: 120px;   /* Ajuste la taille de l’image */
+    max-height: 120px;  /* Idem pour la hauteur */
+    border-radius: 50%; /* Cercle */
+    margin-bottom: 10px;
 }
 
-.borderSearch {
-    width: 500px;
-    border-radius: 10px;
-    border: 0.5px solid white;
-}
-
-.recherche {
-    display: flex;
-    flex-wrap: wrap;
-    height: 50px;
-    width: 230px;
-    font-size: 18px;
-    color: white;   
-    font-weight: bold;
-}
-
-.bordernone {
-    border: none;
-}
-
-.paddingSearch {
-    padding-left: 20px;
-}
-
-.buttonSearch {
-    display: flex;
-    flex-wrap: wrap;
-    height: 50px;
-    width: 120px;
-    color: white;
-    cursor: pointer;
-    border-radius: 0 10px 10px 0;
-}
-
-#myButton {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-h1 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+/* 6) Titre de l’artiste */
+.grid-item h2 {
+    margin: 0;
+    font-size: 1.1rem;       /* Ajuste la taille du texte */
+    font-weight: 600;        /* Un peu plus épais */
+    text-align: center;      /* Centre le texte */
+    text-transform: uppercase;  /* Met en majuscules (optionnel) */
+    letter-spacing: 1px;     /* Espacement entre les lettres (optionnel) */
 }

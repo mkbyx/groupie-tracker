@@ -1,51 +1,121 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Page d'accueil</title>
-    <link rel="stylesheet" href="/styles/style.css">
-  </head>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Page d'accueil</title>
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
   <header>
-    <div class="logo">
-      <img src="/styles/Groupie_Music.png" alt="logo">
-      <h1>Best Moment Artist</h1>
-    </div>
     <div class="banner">
-    <section>
-      <div class="search flexcenter" id="search">
-            <input type="text" id="app-search" placeholder="Que souhaitez-vous écouter ?">
-        </div>
-        <div class="backBlue flexCenter buttonSearch">Rechercher</div>
-      </div>
-    <section>
+      <h1>Mon Groupie Tracker</h1>
+    </div>
   </header>
+
+  <div class="main-container">
+    <!-- SIDEBAR À GAUCHE -->
+    <aside class="sidebar">
+      <h2>Filtrer les artistes</h2>
+
+      <!-- Filtrer par nom -->
+      <label for="filter-name">Nom</label>
+      <input type="text" id="filter-name" class="sidebar-input" placeholder="Rechercher..." />
+
+      <!-- Filtrer par année (CreationDate) -->
+      <label for="filter-year">Après année</label>
+      <select id="filter-year">
+        <option value="">Toutes les années</option>
+        <option value="1970">1970</option>
+        <option value="1980">1980</option>
+        <option value="1990">1990</option>
+        <option value="2000">2000</option>
+        <option value="2010">2010</option>
+      </select>
+      
+      <!-- Filtrer par nombre de membres (exemple) -->
+      <label for="filter-members">Nombre de membres</label>
+      <select id="filter-members">
+        <option value="">Tous</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3 et plus</option>
+      </select>
+
+      <!-- Bouton pour appliquer le filtre -->
+      <button id="sidebar-search-btn" class="sidebar-button">Rechercher</button>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div class="content">
+      <div class="grille">
+        {{ range .Lists }}
+          <div class="grid-item"
+               data-title="{{ .Name }}"
+               data-creationdate="{{ .CreationDate }}"
+               data-members="{{ len .Members }}"
+          >
+            <a href="/artiste?id={{ .Id }}">
+              <img src="{{ .Image }}" alt="{{ .Name }}" style="width: 150px; height: 150px; border-radius: 50%; margin-top: 5px;">
+            </a>
+            <h2>{{ .Name }}</h2>
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Script de filtrage -->
   <script>
-    var searchBar = document.getElementById("app-search");
-searchBar.addEventListener("input", function () {
-    var searchValue = this.value.toLowerCase();
-    console.log(searchValue)
-    var maps = document.getElementsByClassName("grid-item");
-    for (var i = 0; i < maps.length; i++) {
-        var map = maps[i];
-        if (map.dataset.title.toLowerCase().indexOf(searchValue) !== -1) {
-            map.style.display = "block";
-        } else {
-            map.style.display = "none";
+    document.getElementById('sidebar-search-btn').addEventListener('click', function() {
+      // On récupère les valeurs de chaque "filtre"
+      var nameValue   = document.getElementById('filter-name').value.toLowerCase();
+      var yearValue   = document.getElementById('filter-year').value;  // ex: "1980"
+      var membersValue = document.getElementById('filter-members').value; // ex: "3"
+
+      var items = document.getElementsByClassName('grid-item');
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+
+        // Lecture des data-attributes
+        var itemTitle        = item.dataset.title.toLowerCase();
+        var itemCreationDate = parseInt(item.dataset.creationdate, 10);
+        var itemMembers      = parseInt(item.dataset.members, 10);
+
+        // Par défaut, on suppose qu'on affiche l'item
+        var showItem = true;
+
+        // 1) Filtre par nom (si nameValue non vide)
+        if (nameValue && !itemTitle.includes(nameValue)) {
+          showItem = false;
         }
-    }
-});
+
+        // 2) Filtre par année, si l'utilisateur choisit une année
+        //    Par exemple, on veut "tous les groupes créés APRES 1980"
+        if (yearValue) {
+          var yearFilterInt = parseInt(yearValue, 10);
+          if (itemCreationDate < yearFilterInt) {
+            showItem = false;
+          }
+        }
+
+        // 3) Filtre par nombre de membres (juste un exemple)
+        if (membersValue) {
+          if (membersValue === "1" && itemMembers !== 1) {
+            showItem = false;
+          }
+          if (membersValue === "2" && itemMembers !== 2) {
+            showItem = false;
+          }
+          // "3" => 3 et plus
+          if (membersValue === "3" && itemMembers < 3) {
+            showItem = false;
+          }
+        }
+
+        // Affichage ou masquage
+        item.style.display = showItem ? "block" : "none";
+      }
+    });
   </script>
-  <body>
-    <div class="grille">
-      {{ range .Lists }}
-        <div class="grid-item" data-title="{{ .Name }}">
-          <a href="/artiste?id={{ .Id }}">
-            <img src="{{ .Image }}" alt="{{ .Name }}" style="width: 150px; height: 150px; border-radius: 50%; margin-top: 5px;">
-          </a>
-          <h2>{{ .Name }}</h2>
-          <a href="/artiste?id={{ .Id }}">Voir les détails</a>
-        </div>
-      {{ end }}
-    </div>    
-  </body>
+</body>
 </html>
