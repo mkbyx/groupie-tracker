@@ -42,59 +42,82 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	var GroupList List
-	json.Unmarshal(body, &GroupList.Lists)
+	var groupList List
+	json.Unmarshal(body, &groupList.Lists)
 	queryYear := r.URL.Query().Get("year")
+	queryYearAlbum := r.URL.Query().Get("yearAlbum")
 	queryMembers := r.URL.Query().Get("members")
+	searchQuery := r.URL.Query().Get("query")
 
 	var filteredArtists []Artiste
-	for _, artist := range GroupList.Lists {
-		searchQuery := r.URL.Query().Get("query")
+	filteredArtists = groupList.Lists
+	
 	if searchQuery != "" {
 		searchQuery = strings.ToLower(searchQuery)
-
-		var filteredArtists []Artiste
-		for _, artist := range GroupList.Lists {
-			if strings.Contains(strings.ToLower(artist.Name), searchQuery) ||
-				strings.Contains(strings.ToLower(artist.Locations), searchQuery) ||
-				strings.Contains(strings.ToLower(artist.FirstAlbum), searchQuery) ||
-				strings.Contains(fmt.Sprint(artist.CreationDate), searchQuery) ||
-				containsIgnoreCase(artist.Members, searchQuery) {
-				filteredArtists = append(filteredArtists, artist)
+		tempFilteredArtists := []Artiste{}
+		
+		for _, artist := range filteredArtists {
+			if strings.Contains(strings.ToLower(artist.Name), searchQuery) {
+				tempFilteredArtists = append(tempFilteredArtists, artist)
+			}else if containsInList(artist.Members,searchQuery){
+				tempFilteredArtists = append(tempFilteredArtists, artist)
+			}else if strings.Contains(strconv.Itoa(artist.CreationDate), searchQuery){
+				tempFilteredArtists = append(tempFilteredArtists, artist)
+			}else if strings.Contains(artist.FirstAlbum, searchQuery){
+				tempFilteredArtists = append(tempFilteredArtists, artist)
 			}
 		}
-		GroupList.Lists = filteredArtists
+		filteredArtists = tempFilteredArtists 
 	}
 
-		// Filtrer par année
-		if queryYear != "" {
-			year, err := strconv.Atoi(queryYear)
-			if err == nil && artist.CreationDate < year {
-				continue
-			}
-		}
-
-		// Filtrer par nombre de membres
-		if queryMembers != "" {
-			memberCount, err := strconv.Atoi(queryMembers)
-			if err == nil {
-				if memberCount == 3 && len(artist.Members) < 3 {
-					continue
-				} else if memberCount != 3 && len(artist.Members) != memberCount {
-					continue
+	if queryYear != "" {
+		year, err := strconv.Atoi(queryYear)
+		if err == nil {
+			tempFilteredArtists := []Artiste{}
+			for _, artist := range filteredArtists {
+				if artist.CreationDate >= year && artist.CreationDate <= year+10 {
+					tempFilteredArtists = append(tempFilteredArtists, artist)
 				}
 			}
+			filteredArtists = tempFilteredArtists 
 		}
-
-		// Si l'artiste passe tous les filtres, on l'ajoute à la liste filtrée
-		filteredArtists = append(filteredArtists, artist)
 	}
 
-	// Mise à jour de la liste affichée
-	GroupList.Lists = filteredArtists
-	t.Execute(w, GroupList)
+	if queryYearAlbum != "" {
+		yearAlbum, err := strconv.Atoi(queryYearAlbum)
+		if err == nil {
+			tempFilteredArtists := []Artiste{}
+			for _, artist := range filteredArtists {
+				dateParts := strings.Split(artist.FirstAlbum, "-")
+				if len(dateParts) == 3 {
+					artistFirstAlbumYear, convErr := strconv.Atoi(dateParts[2])
+					if convErr == nil && artistFirstAlbumYear >= yearAlbum && artistFirstAlbumYear <= yearAlbum+10 {
+						tempFilteredArtists = append(tempFilteredArtists, artist)
+					}
+				}
+			}
+			filteredArtists = tempFilteredArtists
+		}
+	}
+
+	if queryMembers != "" {
+		memberCount, err := strconv.Atoi(queryMembers)
+		if err == nil {
+			tempFilteredArtists := []Artiste{}
+			for _, artist := range filteredArtists {
+				if len(artist.Members) == memberCount {
+					tempFilteredArtists = append(tempFilteredArtists, artist)
+				}
+			}
+			filteredArtists = tempFilteredArtists
+		}
+	}
+
+	groupList.Lists = filteredArtists
+	t.Execute(w, groupList)
 }
-func containsIgnoreCase(list []string, query string) bool {
+
+func containsInList(list []string, query string) bool {
 	for _, item := range list {
 		if strings.Contains(strings.ToLower(item), query) {
 			return true

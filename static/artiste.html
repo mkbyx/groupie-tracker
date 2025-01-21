@@ -23,6 +23,7 @@
             <div class="artist-details">
                 <h2>{{ .Name }}</h2>
                 <p><strong>Dates des prochains concerts :</strong> {{ .ConcertDates }}</p>
+                <p>{{ .CreationDate }}</p>
                 <p><strong>Date du premier album :</strong> {{ .FirstAlbum }}</p>
                 <p><strong>Nom des membres :</strong> {{ range .Members }}<span>{{ . }}</span> {{ end }}</p>
             </div>
