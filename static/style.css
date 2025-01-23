@@ -1,169 +1,114 @@
-.main-container {
-    display: flex;
-  }
-  
-  .sidebar {
-    width: 250px;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .sidebar h2 {
-    margin-top: 0;
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-  
-  .sidebar label {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .sidebar-input,
-  #filter-year,
-  #filter-members {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .sidebar-button {
-    background-color: #06A9E9;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-  .sidebar-button:hover {
-    background-color: #004E7C;
-  }
-  
-  .content {
-    flex: 1;
-    padding: 20px;
-    background-color: #f4f4f4;
-    box-sizing: border-box;
-  }
-  
-  .grille {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-  }
-  .grid-item {
-    position: relative;           /* Utile si on veut ajouter un effet d’ombre “flottant” */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  .grid-item:hover {
-    transform: scale(1.1) rotate(3deg);  
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-  }
-
-  .grid-item {
-    opacity: 0;           /* Caché par défaut */
-    animation: fadeIn 0.8s forwards;
-  }
-  
-  @keyframes fadeIn {
-    to {
-      opacity: 1;         /* L’item devient visible */
-    }
-  }
-
-  .grid-item img {
-    transition: transform 0.3s ease;
-  }
-  
-  .grid-item:hover img {
-    transform: scale(1.2);
-  }
-
-  .grid-item {
-    background-color: rgba(103, 93, 93, 0.645);
-    transition: background-color 0.3s ease;
-  }
-  
-  .grid-item:hover {
-    background-color: #ff9800;  /* Couleur plus vive (orange) */
-  }
-
-  .grid-item:hover {
-    box-shadow: 0 0 10px 5px rgba(255, 195, 0, 0.5);
-    transform: scale(1.05);
-  }
-
-/* 1) Import d’une police Google (dans votre style.css, par exemple tout en haut) */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-
-/* 2) Style global du body : applique la police par défaut */
 body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f8f8; /* Un fond gris clair, par exemple */
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
 }
 
-/* 3) On s’assure que la grille elle-même soit centrée */
+header .banner {
+  text-align: center;
+  background-color: #06A9E9;
+  color: white;
+  padding: 20px 0;
+}
+
+header .banner h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.main-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.sidebar label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.sidebar-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.sidebar-button {
+  background-color: #06A9E9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-button:hover {
+  background-color: #004E7C;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
 .grille {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;  /* centrer horizontalement */
-    gap: 20px;                /* espace entre les items */
-    padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
-/* 4) .grid-item : centrer le contenu + style plus propre */
 .grid-item {
-    display: flex;
-    flex-direction: column;  /* Image puis texte en colonne */
-    align-items: center;     /* Centre horizontalement l’image et le texte */
-    justify-content: center; /* Centre verticalement si nécessaire */
-    width: 200px;            /* Largeur fixe, à ajuster selon tes goûts */
-    min-height: 260px;       /* Hauteur mini, pour garder un alignement */
-    
-    background-color: #aaa;  /* Couleur de fond gris moyen (exemple) */
-    color: #fff;             /* Texte blanc pour contraster */
-    border-radius: 10px;     /* Coins arrondis, plus doux que le cercle */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);  /* Légère ombre */
-    transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #aaa;
+  color: white;
+  width: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Au survol, effet de léger zoom */
 .grid-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* 5) Image : centrée et adapté à la largeur */
 .grid-item img {
-    display: block;
-    max-width: 120px;   /* Ajuste la taille de l’image */
-    max-height: 120px;  /* Idem pour la hauteur */
-    border-radius: 50%; /* Cercle */
-    margin-bottom: 10px;
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
-/* 6) Titre de l’artiste */
 .grid-item h2 {
-    margin: 0;
-    font-size: 1.1rem;       /* Ajuste la taille du texte */
-    font-weight: 600;        /* Un peu plus épais */
-    text-align: center;      /* Centre le texte */
-    text-transform: uppercase;  /* Met en majuscules (optionnel) */
-    letter-spacing: 1px;     /* Espacement entre les lettres (optionnel) */
+  margin: 0;
+  text-align: center;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

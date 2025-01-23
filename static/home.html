@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Page d'accueil</title>
+  <title>Groupie Tracker</title>
   <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
@@ -13,45 +13,51 @@
   </header>
 
   <div class="main-container">
-    <!-- SIDEBAR À GAUCHE -->
     <aside class="sidebar">
       <h2>Filtrer les artistes</h2>
+      <form method="GET" action="/">
+        <label for="filter-name">Nom</label>
+        <input 
+          type="text" 
+          id="filter-name" 
+          name="query" 
+          class="sidebar-input" 
+          placeholder="Rechercher un artiste..." />
+        <label for="filter-year">Année de création</label>
+        <select id="filter-year" name="year" class="sidebar-input">
+          <option value="">Toutes les années</option>
+          <option value="1970">1970</option>
+          <option value="1980">1980</option>
+          <option value="1990">1990</option>
+          <option value="2000">2000</option>
+          <option value="2010">2010</option>
+        </select>
 
-      <!-- Filtrer par nom -->
-      <label for="filter-name">Nom</label>
-      <input type="text" id="filter-name" class="sidebar-input" placeholder="Rechercher..." />
-
-      <!-- Filtrer par année (CreationDate) -->
-      <label for="filter-year">Après année</label>
-      <select id="filter-year" class="sidebar-input">
-        <option value="">Toutes les années</option>
-        <option value="1970">1970</option>
-        <option value="1980">1980</option>
-        <option value="1990">1990</option>
-        <option value="2000">2000</option>
-        <option value="2010">2010</option>
-      </select>
-      
-      <!-- Filtrer par nombre de membres -->
-      <label for="filter-members">Nombre de membres</label>
-      <select id="filter-members" class="sidebar-input">
-        <option value="">Tous</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3 et plus</option>
-      </select>
+        <label for="filter-year-album">premier album</label>
+        <select id="filter-year-album" name="yearAlbum" class="sidebar-input">
+          <option value="">Toutes les années</option>
+          <option value="1970">1970</option>
+          <option value="1980">1980</option>
+          <option value="1990">1990</option>
+          <option value="2000">2000</option>
+          <option value="2010">2010</option>
+        </select>
+        <label for="filter-members">Nombre de membres</label>
+        <select id="filter-members" name="members" class="sidebar-input">
+          <option value="">Tous</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3 et plus</option>
+        </select>
+        <button type="submit" class="sidebar-button">Rechercher</button>
+      </form>      
     </aside>
-
-    <!-- CONTENU PRINCIPAL -->
     <div class="content">
       <div class="grille">
         {{ range .Lists }}
-          <div class="grid-item"
-               data-title="{{ .Name }}"
-               data-creationdate="{{ .CreationDate }}"
-               data-members="{{ len .Members }}">
+          <div class="grid-item">
             <a href="/artiste?id={{ .Id }}">
-              <img src="{{ .Image }}" alt="{{ .Name }}" style="width: 150px; height: 150px; border-radius: 50%; margin-top: 5px;">
+              <img src="{{ .Image }}" alt="{{ .Name }}" />
             </a>
             <h2>{{ .Name }}</h2>
           </div>
@@ -59,61 +65,5 @@
       </div>
     </div>
   </div>
-
-  <!-- Script de recherche interactive -->
-  <script>
-    // Récupérer les filtres
-    const filterName = document.getElementById('filter-name');
-    const filterYear = document.getElementById('filter-year');
-    const filterMembers = document.getElementById('filter-members');
-    const items = document.getElementsByClassName('grid-item');
-
-    // Fonction pour filtrer les résultats
-    function applyFilters() {
-      const nameValue = filterName.value.toLowerCase();
-      const yearValue = parseInt(filterYear.value, 10);
-      const membersValue = filterMembers.value;
-
-      for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        const itemTitle = item.dataset.title.toLowerCase();
-        const itemCreationDate = parseInt(item.dataset.creationdate, 10);
-        const itemMembers = parseInt(item.dataset.members, 10);
-
-        let showItem = true;
-
-        // Filtrer par nom
-        if (nameValue && !itemTitle.includes(nameValue)) {
-          showItem = false;
-        }
-
-        // Filtrer par année
-        if (!isNaN(yearValue) && (itemCreationDate < yearValue || itemCreationDate > yearValue+10)) {
-          showItem = false;
-        }
-
-        // Filtrer par nombre de membres
-        if (membersValue) {
-          if (membersValue === "1" && itemMembers !== 1) {
-            showItem = false;
-          }
-          if (membersValue === "2" && itemMembers !== 2) {
-            showItem = false;
-          }
-          if (membersValue === "3" && itemMembers < 3) {
-            showItem = false;
-          }
-        }
-
-        // Afficher ou masquer l'élément
-        item.style.display = showItem ? "block" : "none";
-      }
-    }
-
-    // Ajouter des écouteurs d'événements sur les filtres
-    filterName.addEventListener('input', applyFilters);
-    filterYear.addEventListener('change', applyFilters);
-    filterMembers.addEventListener('change', applyFilters);
-  </script>
 </body>
 </html>
