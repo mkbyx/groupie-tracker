@@ -109,7 +109,7 @@ func filterMembre(queryMembers string, filteredArtists []Artiste) []Artiste {
 	return filteredArtists
 }
 
-func MainPage(w http.ResponseWriter, r *http.Request) {
+func mainPage(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./static/home.html")
 	if err != nil {
 		log.Fatal(err)
@@ -154,7 +154,7 @@ func containsInList(list []string, query string) bool {
 	return false
 }
 
-func ArtistPage(w http.ResponseWriter, r *http.Request) {
+func artistPage(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./static/artiste.html")
 	if err != nil {
 		log.Fatal(err)
@@ -187,4 +187,13 @@ func ArtistPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	t.Execute(w, selectedArtist)
+}
+
+func Init() {
+	staticFiles := http.FileServer(http.Dir("./static"))
+	http.Handle("/styles/", http.StripPrefix("/styles/", staticFiles))
+	http.HandleFunc("/", mainPage)
+	http.HandleFunc("/artiste", artistPage)
+	fmt.Println("Serveur démarré sur : http://localhost:8080")
+	http.ListenAndServe(":8080", nil)
 }

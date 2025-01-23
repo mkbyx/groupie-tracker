@@ -14,12 +14,9 @@
     </header>
     <main>
         <div class="artist-container">
-            <!-- Image de l'artiste -->
             <div class="artist-image">
                 <img src="{{ .Image }}" alt="{{ .Name }}">
             </div>
-
-            <!-- Informations principales -->
             <div class="artist-details">
                 <h2>{{ .Name }}</h2>
                 <p><strong>Dates des prochains concerts :</strong> {{ .ConcertDates }}</p>
@@ -27,8 +24,6 @@
                 <p><strong>Date du premier album :</strong> {{ .FirstAlbum }}</p>
                 <p><strong>Nom des membres :</strong> {{ range .Members }}<span>{{ . }}</span> {{ end }}</p>
             </div>
-
-            <!-- Bouton de retour -->
             <div class="back-button">
                 <a href="/" class="btn-retour">Retour</a>
             </div>

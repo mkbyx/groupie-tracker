@@ -51,7 +51,6 @@ header {
 	line-height: 1.5;
 }
 
-/* Conteneur principal */
 .artist-container {
     max-width: 800px;
     margin: 50px auto;
@@ -62,14 +61,12 @@ header {
     font-family: Arial, sans-serif;
 }
 
-/* Titre principal */
 .title h1 {
     text-align: center;
     color: #333;
     margin-bottom: 30px;
 }
 
-/* Image de l'artiste */
 .artist-image {
     text-align: center;
     margin-bottom: 20px;
@@ -81,7 +78,6 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Informations principales */
 .artist-details h2 {
     text-align: center;
     color: #555;
@@ -95,7 +91,6 @@ header {
     color: #444;
 }
 
-/* Bouton de retour */
 .btn-retour {
     display: inline-block;
     text-decoration: none;
