@@ -81,6 +81,15 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.box{
+    display: flex;
+    justify-content: space-around;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+    animation-duration: 3s;
+    animation-name: slidein;
+}
+
 /* Informations principales */
 .artist-details h2 {
     text-align: center;
@@ -110,3 +119,29 @@ header {
 .btn-retour:hover {
     background-color: #0056b3;
 }
+.DatesLocations{
+    background-color: yellow;
+    border-radius: 30px;
+    border-color: black;
+    border-width: 20px;
+    text-align: center;
+    align-content: center;
+    padding: 10px;
+   }
+  
+  bdy{
+    display:grid;
+     grid-template: 1fr 1fr 1fr/1fr 1fr 1fr;
+  }
+  
+   .error{
+    grid-row-start:2 ;
+    grid-column-start: 2;
+    text-align: center;
+    color: black;
+    font-family: "Verdana";
+    font-size: large;
+    background-color: yellow;
+    border-radius: 50px;
+    padding: 20px;
+  }

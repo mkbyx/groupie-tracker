@@ -9,22 +9,27 @@ import (
 	"net/http"
 )
 
+type Concert struct {
+	Date     string
+	Location string
+}
 type List struct {
 	Lists []Artiste
 }
-
 type Artiste struct {
-	Id           int      `json:"id"`
-	Name         string   `json:"name"`
-	Image        string   `json:"image"`
-	Locations    string   `json:"locations"`
-	Members      []string `json:"members"`
-	CreationDate int      `json:"creationdate"`
-	FirstAlbum   string   `json:"firstalbum"`
-	ConcertDates string   `json:"concertdates"`
-	Relations    string   `json:"relations"`
+	Id             int      `json:"id"`
+	Name           string   `json:"name"`
+	Image          string   `json:"image"`
+	Locations      string   `json:"locations"`
+	Members        []string `json:"members"`
+	CreationDate   int      `json:"creationdate"`
+	FirstAlbum     string   `json:"firstalbum"`
+	ConcertDates   string   `json:"concertdates"`
+	Relations      string   `json:"relations"`
+	DatesLocations []Concert
 }
-//a modifier
+
+// a modifier
 func mainPage(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./static/home.html")
 	if err != nil {
@@ -43,7 +48,8 @@ func mainPage(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(body, &GroupList.Lists)
 	t.Execute(w, GroupList)
 }
-//a modifier
+
+// a modifier
 func artistPage(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./static/artiste.html")
 	if err != nil {
@@ -87,4 +93,3 @@ func main() {
 	fmt.Println("Serveur démarré sur : http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
-
